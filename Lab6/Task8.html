@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const colors = ["#FF5733", "#33FF57", "#3357FF", "#F4D03F", "#8E44AD", "#3498DB", "#E74C3C", "#1ABC9C"];
+
+  function getRandomColor() {
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  }
+
+  function getRandomDiameter() {
+    return Math.floor(Math.random() * (200 - 50 + 1)) + 50; 
+  }
+
+  function getRandomPosition(diameter) {
+    const maxX = window.innerWidth - diameter;
+    const maxY = window.innerHeight - diameter;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+    return { x: randomX, y: randomY };
+  }
+
+  function drawCircle() {
+    const diameter = getRandomDiameter();
+    const color = getRandomColor();
+    const position = getRandomPosition(diameter);
+
+    const circle = document.createElement('div');
+    circle.classList.add('circle');
+    circle.style.width = `${diameter}px`;
+    circle.style.height = `${diameter}px`;
+    circle.style.backgroundColor = color;
+    circle.style.left = `${position.x}px`;
+    circle.style.top = `${position.y}px`;
+
+    document.body.appendChild(circle);
+  }
+
+  function drawCircles(count) {
+    for (let i = 0; i < count; i++) {
+      drawCircle();
+    }
+  }
+
+  drawCircles(20); 
+</script>
+
+</body>
+</html>

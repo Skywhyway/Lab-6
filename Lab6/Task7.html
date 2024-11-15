@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7</title>
+  <style>
+    #board-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(var(--size), 20px);
+      grid-template-rows: repeat(var(--size), 20px);
+      gap: 0;
+    }
+
+    .cell {
+      width: 20px;
+      height: 20px;
+    }
+
+    .white {
+      background-color: white;
+    }
+
+    .black {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <div id="board-container"></div>
+
+  <script>
+    function createChessBoard(size) {
+      const board = document.createElement('div');
+      board.classList.add('board');
+      board.style.setProperty('--size', size);
+
+      for (let row = 0; row < size; row++) {
+        for (let col = 0; col < size; col++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          if ((row + col) % 2 === 0) {
+            cell.classList.add('white');
+          } else {
+            cell.classList.add('black');
+          }
+          board.appendChild(cell);
+        }
+      }
+
+      return board;
+    }
+
+    const boardContainer = document.getElementById('board-container');
+    const chessBoard = createChessBoard(8);
+    boardContainer.appendChild(chessBoard);
+  </script>
+</body>
+</html>
